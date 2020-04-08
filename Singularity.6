@@ -32,8 +32,9 @@ pip3 install ipyparallel
 apt-get -y upgrade
 apt-get -y install git
 git clone https://github.com/NVIDIA/apex
-
-
+cd apex
+pip3 install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+cd ..
 ipcluster nbextension enable
 
 %environment

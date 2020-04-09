@@ -46,7 +46,4 @@ PATH=${PATH}:${LSF_BINDIR}:/cm/local/apps/cuda/libs/current/bin
 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-9.0/lib64:/cm/local/apps/cuda-driver/libs/current/lib64
 CUDA_PATH=/usr/local/cuda-9.0
 CUDA_ROOT=/usr/local/cuda-9.0
-
-cd /apex
-pip3 install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 cd $HOME

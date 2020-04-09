@@ -3,6 +3,7 @@ From: nvidia/cuda:9.2-cudnn7-runtime
 
 %post
 apt-get -y update
+apt-get -y install cuda
 apt-get -y install python3-pip
 apt-get -y install nano
 
@@ -41,8 +42,9 @@ PATH=${PATH}:${LSF_BINDIR}
 
 PATH=${PATH}:${LSF_BINDIR}:/cm/local/apps/cuda/libs/current/bin
 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-9.2/lib64:/cm/local/apps/cuda-driver/libs/current/lib64
-CUDA_PATH=/usr/local/cuda-9.2
-CUDA_ROOT=/usr/local/cuda-9.2
+export PATH=/usr/local/cuda-9.2/bin${PATH:+:${PATH}}
+LD_LIBRARY_PATH=/usr/local/cuda-9.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
 cd /apex
 pip3 install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 cd $HOME

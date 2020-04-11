@@ -26,6 +26,8 @@ apt-get -y install python3-pip
 pip3 install --upgrade pip
 pip3 install numpy scipy matplotlib
 apt-get -y upgrade
+pip3 install jupyter
+pip3 install ipyparallel
 apt-get -y install git
 ipcluster nbextension enable
 
@@ -33,8 +35,7 @@ ipcluster nbextension enable
 XDG_RUNTIME_DIR=""
 PATH=${PATH}:${LSF_BINDIR}
 
-PATH=${PATH}:${LSF_BINDIR}:/cm/local/apps/cuda/libs/current/bin
-LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-10.2/lib64:/cm/local/apps/cuda-driver/libs/current/lib64
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-10.2/lib64
 export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
 LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 CUDA_PATH=/usr/local/cuda-10.2

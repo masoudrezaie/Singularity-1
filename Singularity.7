@@ -35,20 +35,10 @@ apt-get -y upgrade
 apt-get -y install git
 #apt-get -y install cuda
 #ipcluster nbextension enable
-conda install -c conda-forge openmpi -y
-# set CMAKE_PREFIX_PATH to anaconda root directory
-export CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" 
+apt-get -y install openmpi-bin
 
-# Install the basic dependencies
-conda install numpy pyyaml mkl mkl-include setuptools cmake cffi typing -y
-conda install -c mingfeima mkldnn -y
-
-
-# Add LAPACK support for the GPU
-conda install -c pytorch magma-cuda90 -y# or magma-cuda90 if CUDA 9 -y
-conda uninstall mkl mkl-include
-pip install mkl
-pip instal mkl_include
+pip3 install mkl
+pip3 instal mkl_include
 pip3 install mpi4py
 apt-get -y install libmlx5-1
 %environment

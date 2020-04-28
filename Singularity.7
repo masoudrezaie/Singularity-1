@@ -38,8 +38,8 @@ apt-get -y install git
 #apt-get -y install openmpi-bin
 #pip install pytorch-lightning
 #apt-get -y install libmlx5-1
-/opt/conda/bin/conda install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi
-/opt/conda/bin/conda install -c pytorch magma-cuda101
+/opt/conda/bin/conda install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi -y
+/opt/conda/bin/conda install -c pytorch magma-cuda101 -y
 #pip3 install mpi4py
 git clone --recursive https://github.com/pytorch/pytorch
 cd pytorch
@@ -47,7 +47,7 @@ cd pytorch
 git submodule sync
 git submodule update --init --recursive
 export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
-python setup.py install
+python setup.py install -y
 
 %environment
 XDG_RUNTIME_DIR=""

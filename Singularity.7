@@ -47,7 +47,7 @@ cd pytorch
 git submodule sync
 git submodule update --init --recursive
 export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
-python3 setup.py install -y
+python3 setup.py install
 
 %environment
 XDG_RUNTIME_DIR=""

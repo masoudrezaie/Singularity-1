@@ -1,0 +1,13 @@
+Bootstrap: docker
+From: vistart/cuda:10.0-ubuntu18.04
+
+%post
+apt-get -y update
+apt-get -y install nano
+apt-get -y install wget
+wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
+bash Anac*
+
+%environment
+XDG_RUNTIME_DIR=""
+PATH=${PATH}:${LSF_BINDIR}

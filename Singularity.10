@@ -6,8 +6,8 @@ apt-get -y update
 apt-get -y install nano
 apt-get -y install wget
 wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
-bash Anac* -b 
-anaconda3/bin/conda install git
+bash Anac* -b -p /anaconda3
+/anaconda3/bin/conda install git
 
 %environment
 XDG_RUNTIME_DIR=""

@@ -8,7 +8,23 @@ apt-get -y install wget
 wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
 bash Anac* -b -p /anaconda3
 /anaconda3/bin/conda install git
+/anaconda3/bin/conda install mpi
+/anaconda3/bin/conda install -c anaconda redis
+/anaconda3/bin/conda install -c conda-forge numactl-cos6-x86_64
+/anaconda3/bin/conda install -c conda-forge blas
+/anaconda3/bin/conda install -c conda-forge mpi
+/anaconda3/bin/conda install -c conda-forge openmpi
+/anaconda3/bin/conda install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi
+/anaconda3/bin/conda install -c pytorch magma-cuda101
+apt-get -y install libomp-dev
+export CMAKE_PREFIX_PATH="/anaconda3/envs/pytorch-build"
+/anaconda3/bin/git clone --branch v1.5.0 https://github.com/pytorch/pytorch.git /pytorch-1.5.0
+export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
+cd /pytorch-1.5.0
+/anaconda3/bin/git submodule update --init --recursive
+/anaconda3/bin/python setup.py install
 
 %environment
+export PATH="/anaconda3/bin:$PATH"
 XDG_RUNTIME_DIR=""
 PATH=${PATH}:${LSF_BINDIR}

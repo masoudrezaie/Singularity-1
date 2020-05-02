@@ -39,10 +39,11 @@ cd /vision
 
 #/anaconda3/bin/python setup.py install
 git clone https://github.com/NVIDIA/apex /apex
-cd /apex
+#cd /apex
 #/anaconda3/bin/pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
-cd ..
+#cd ..
 %environment
 export PATH="/anaconda3/bin:$PATH"
+CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
 XDG_RUNTIME_DIR=""
 PATH=${PATH}:${LSF_BINDIR}

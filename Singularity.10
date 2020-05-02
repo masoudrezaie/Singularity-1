@@ -19,14 +19,14 @@ bash Anac* -b -p /anaconda3
 /anaconda3/bin/conda install -y -c pytorch magma-cuda101
 /anaconda3/bin/conda install -y -c conda-forge vim
 apt-get -y install libomp-dev
-export CUDA_NVCC_EXECUTABLE="/usr/local/cuda-10.1/bin/nvcc"
-export CUDA_HOME="/usr/local/cuda-10.1"
-export CUDNN_INCLUDE_PATH="/usr/local/cuda-10.1/include/"
-export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.1/lib64/"
-export LIBRARY_PATH="/usr/local/cuda-10.1/lib64"
-export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1
+echo 'export CUDA_NVCC_EXECUTABLE="/usr/local/cuda-10.1/bin/nvcc"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDA_HOME="/usr/local/cuda-10.1"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDNN_INCLUDE_PATH="/usr/local/cuda-10.1/include/"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.1/lib64/"' >>$SINGULARITY_ENVIRONMENT
+echo 'export LIBRARY_PATH="/usr/local/cuda-10.1/lib64"' >>$SINGULARITY_ENVIRONMENT
+echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1' >>$SINGULARITY_ENVIRONMENT
 
-export CMAKE_PREFIX_PATH="/anaconda3/bin/../"
+echo 'export CMAKE_PREFIX_PATH="/anaconda3/bin/../"' >>$SINGULARITY_ENVIRONMENT
 /anaconda3/bin/git clone --branch v1.5.0 https://github.com/pytorch/pytorch.git /pytorch-1.5.0
 export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
 cd /pytorch-1.5.0

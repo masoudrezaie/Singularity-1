@@ -33,14 +33,14 @@ echo 'export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}'
 export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
 cd /pytorch-1.5.0
 /anaconda3/bin/git submodule update --init --recursive
-/anaconda3/bin/python setup.py install
+#/anaconda3/bin/python setup.py install
 git clone https://github.com/pytorch/vision.git /vision
 cd /vision
 
-/anaconda3/bin/python setup.py install
+#/anaconda3/bin/python setup.py install
 git clone https://github.com/NVIDIA/apex /apex
 cd /apex
-/anaconda3/bin/pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+#/anaconda3/bin/pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 cd ..
 %environment
 export PATH="/anaconda3/bin:$PATH"

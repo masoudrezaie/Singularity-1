@@ -2,7 +2,7 @@ Bootstrap: docker
 From: vistart/cuda:10.0-ubuntu18.04
 %environment
 export PATH="/anaconda3/bin:$PATH"
-
+CMAKE_PREFIX_PATH="/anaconda3/bin/../"
 %post
 apt-get -y update
 apt-get -y install nano
@@ -28,7 +28,7 @@ echo 'export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.1/lib64/"' >>$SINGULARITY_EN
 echo 'export LIBRARY_PATH="/usr/local/cuda-10.1/lib64"' >>$SINGULARITY_ENVIRONMENT
 echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1' >>$SINGULARITY_ENVIRONMENT
 
-echo 'export CMAKE_PREFIX_PATH="/anaconda3/bin/../"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}' >>$SINGULARITY_ENVIRONMENT
 /anaconda3/bin/git clone --branch v1.5.0 https://github.com/pytorch/pytorch.git /pytorch-1.5.0
 export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
 cd /pytorch-1.5.0

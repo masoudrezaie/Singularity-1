@@ -33,7 +33,7 @@ export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
 cd /pytorch-1.5.0
 /anaconda3/bin/git submodule update --init --recursive
 #/anaconda3/bin/python setup.py install
-git clone https://github.com/pytorch/vision.git /vision
+/anaconda3/bin/git clone https://github.com/pytorch/vision.git /vision
 cd /vision
 
 #/anaconda3/bin/python setup.py install

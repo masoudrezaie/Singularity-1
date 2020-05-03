@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: vistart/cuda:10.0-ubuntu18.04
+From:vistart/cuda
 %environment
     export OMPI_DIR=/opt/ompi
     export SINGULARITY_OMPI_DIR=$OMPI_DIR
@@ -24,43 +24,44 @@ echo "Installing Open MPI"
     export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
     export MANPATH=$OMPI_DIR/share/man:$MANPATH
    
-wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
-bash Anac* -b -p /anaconda3
-/anaconda3/bin/conda install -y git
-/anaconda3/bin/conda install -y -c anaconda redis
-/anaconda3/bin/conda install -y -c conda-forge numactl-cos6-x86_64
-/anaconda3/bin/conda install -y -c conda-forge numactl-cos6-x86_64
-/anaconda3/bin/conda install -y -c conda-forge blas
-/anaconda3/bin/conda install -y -c conda-forge openssh
-/anaconda3/bin/conda install -y -c conda-forge openmpi
-/anaconda3/bin/conda install -y numpy ninja pyyaml mkl mkl-include setuptools cmake cffi
-/anaconda3/bin/conda install -y -c pytorch magma-cuda101
-/anaconda3/bin/conda install -y -c conda-forge vim
+#wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
+#bash Anac* -b -p /anaconda3
+#/anaconda3/bin/conda install -y git
+#/anaconda3/bin/conda install -y -c anaconda redis
+#/anaconda3/bin/conda install -y -c conda-forge numactl-cos6-x86_64
+#/anaconda3/bin/conda install -y -c conda-forge numactl-cos6-x86_64
+#/anaconda3/bin/conda install -y -c conda-forge blas
+#/anaconda3/bin/conda install -y -c conda-forge openssh
+#/anaconda3/bin/conda install -y -c conda-forge openmpi
+#/anaconda3/bin/conda install -y numpy ninja pyyaml mkl mkl-include setuptools cmake cffi
+#/anaconda3/bin/conda install -y -c pytorch magma-cuda101
+#/anaconda3/bin/conda install -y -c conda-forge vim
 apt-get -y install libomp-dev
-echo 'export CUDA_NVCC_EXECUTABLE="/usr/local/cuda-10.1/bin/nvcc"' >>$SINGULARITY_ENVIRONMENT
-echo 'export CUDA_HOME="/usr/local/cuda-10.1"' >>$SINGULARITY_ENVIRONMENT
-echo 'export CUDNN_INCLUDE_PATH="/usr/local/cuda-10.1/include/"' >>$SINGULARITY_ENVIRONMENT
-echo 'export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.1/lib64/"' >>$SINGULARITY_ENVIRONMENT
-echo 'export LIBRARY_PATH="/usr/local/cuda-10.1/lib64"' >>$SINGULARITY_ENVIRONMENT
-echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDA_NVCC_EXECUTABLE="/usr/local/cuda-10.0/bin/nvcc"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDA_HOME="/usr/local/cuda-10.0"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDNN_INCLUDE_PATH="/usr/local/cuda-10.0/include/"' >>$SINGULARITY_ENVIRONMENT
+echo 'export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.0/lib64/"' >>$SINGULARITY_ENVIRONMENT
+echo 'export LIBRARY_PATH="/usr/local/cuda-10.0/lib64"' >>$SINGULARITY_ENVIRONMENT
+echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1 USE_CUDNN=ON' >>$SINGULARITY_ENVIRONMENT
 
-echo 'export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}' >>$SINGULARITY_ENVIRONMENT
-/anaconda3/bin/git clone --branch v1.5.0 https://github.com/pytorch/pytorch.git /pytorch-1.5.0
-export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
-cd /pytorch-1.5.0
-/anaconda3/bin/git submodule update --init --recursive
+#echo 'export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}' >>$SINGULARITY_ENVIRONMENT
+#/anaconda3/bin/git clone --branch v1.5.0 https://github.com/pytorch/pytorch.git /pytorch-1.5.0
+#export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1
+#cd /pytorch-1.5.0
+#/anaconda3/bin/git submodule update --init --recursive
 #/anaconda3/bin/python setup.py install
-/anaconda3/bin/git clone https://github.com/pytorch/vision.git /vision
-cd /vision
+#/anaconda3/bin/git clone https://github.com/pytorch/vision.git /vision
+#cd /vision
 
 #/anaconda3/bin/python setup.py install
-/anaconda3/bin/git clone https://github.com/NVIDIA/apex /apex
+#/anaconda3/bin/git clone https://github.com/NVIDIA/apex /apex
 #cd /apex
 #/anaconda3/bin/pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 #cd ..
 %environment
-
-export PATH="/anaconda3/bin:$PATH"
-CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
+exho "#!/bin/bash">> Start.sh
+bash Start.sh
+#export PATH="/anaconda3/bin:$PATH"
+#CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
 XDG_RUNTIME_DIR=""
 PATH=${PATH}:${LSF_BINDIR}

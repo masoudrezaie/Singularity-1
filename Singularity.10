@@ -59,7 +59,6 @@ echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1 USE_CUDNN=ON' >>$SING
 #/anaconda3/bin/pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 #cd ..
 %environment
-exho "#!/bin/bash">> Start.sh
 bash Start.sh
 #export PATH="/anaconda3/bin:$PATH"
 #CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}

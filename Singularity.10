@@ -10,12 +10,11 @@ apt-get -y install wget
 wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
 bash Anac* -b -p /anaconda3
 /anaconda3/bin/conda install -y git
-/anaconda3/bin/conda install  -y mpi
 /anaconda3/bin/conda install -y -c anaconda redis
 /anaconda3/bin/conda install -y -c conda-forge numactl-cos6-x86_64
 /anaconda3/bin/conda install -y -c conda-forge numactl-cos6-x86_64
 /anaconda3/bin/conda install -y -c conda-forge blas
-/anaconda3/bin/conda install -y -c conda-forge mpi
+/anaconda3/bin/conda install -y -c conda-forge openssh
 /anaconda3/bin/conda install -y -c conda-forge openmpi
 /anaconda3/bin/conda install -y numpy ninja pyyaml mkl mkl-include setuptools cmake cffi
 /anaconda3/bin/conda install -y -c pytorch magma-cuda101
@@ -38,11 +37,12 @@ git clone https://github.com/pytorch/vision.git /vision
 cd /vision
 
 #/anaconda3/bin/python setup.py install
-git clone https://github.com/NVIDIA/apex /apex
+/anaconda3/bin/git clone https://github.com/NVIDIA/apex /apex
 #cd /apex
 #/anaconda3/bin/pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 #cd ..
 %environment
+
 export PATH="/anaconda3/bin:$PATH"
 CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
 XDG_RUNTIME_DIR=""

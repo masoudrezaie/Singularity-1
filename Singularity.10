@@ -1,28 +1,29 @@
 Bootstrap: docker
-From:vistart/cuda
-%environment
-    export OMPI_DIR=/opt/ompi
-    export SINGULARITY_OMPI_DIR=$OMPI_DIR
-    export SINGULARITYENV_APPEND_PATH=$OMPI_DIR/bin
-    export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
+From:vistart/cuda:10.1-cudnn7-tensorrt6-devel-ubuntu18.04
+#%environment
+#    export OMPI_DIR=/opt/ompi
+#    export SINGULARITY_OMPI_DIR=$OMPI_DIR
+#    export SINGULARITYENV_APPEND_PATH=$OMPI_DIR/bin
+#    export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
 %post
 apt-get -y update
-apt-get -y install nano 
+apt-get -y install openssh-client
+apt-get -y install nano
 apt-get -y install wget bash gcc gfortran g++ make file
-echo "Installing Open MPI"
-    export OMPI_DIR=/opt/ompi
-    export OMPI_VERSION=4.0.1
-    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2"
-    mkdir -p /tmp/ompi
-    mkdir -p /opt
+#echo "Installing Open MPI"
+#    export OMPI_DIR=/opt/ompi
+#    export OMPI_VERSION=4.0.1
+#    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2"
+#    mkdir -p /tmp/ompi
+#    mkdir -p /opt
     # Download
-    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
+#    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
     # Compile and install
-    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR --with-cuda && make install
+#    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR --with-cuda && make install
     # Set env variables so we can compile our application
-    export PATH=$OMPI_DIR/bin:$PATH
-    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
-    export MANPATH=$OMPI_DIR/share/man:$MANPATH
+#    export PATH=$OMPI_DIR/bin:$PATH
+#    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
+#    export MANPATH=$OMPI_DIR/share/man:$MANPATH
    
 #wget https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
 #bash Anac* -b -p /anaconda3
@@ -37,12 +38,12 @@ echo "Installing Open MPI"
 #/anaconda3/bin/conda install -y -c pytorch magma-cuda101
 #/anaconda3/bin/conda install -y -c conda-forge vim
 apt-get -y install libomp-dev
-echo 'export CUDA_NVCC_EXECUTABLE="/usr/local/cuda-10.0/bin/nvcc"' >>$SINGULARITY_ENVIRONMENT
-echo 'export CUDA_HOME="/usr/local/cuda-10.0"' >>$SINGULARITY_ENVIRONMENT
-echo 'export CUDNN_INCLUDE_PATH="/usr/local/cuda-10.0/include/"' >>$SINGULARITY_ENVIRONMENT
-echo 'export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.0/lib64/"' >>$SINGULARITY_ENVIRONMENT
-echo 'export LIBRARY_PATH="/usr/local/cuda-10.0/lib64"' >>$SINGULARITY_ENVIRONMENT
-echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1 USE_CUDNN=ON' >>$SINGULARITY_ENVIRONMENT
+#echo 'export CUDA_NVCC_EXECUTABLE="/usr/local/cuda-10.0/bin/nvcc"' >>$SINGULARITY_ENVIRONMENT
+#echo 'export CUDA_HOME="/usr/local/cuda-10.0"' >>$SINGULARITY_ENVIRONMENT
+#echo 'export CUDNN_INCLUDE_PATH="/usr/local/cuda-10.0/include/"' >>$SINGULARITY_ENVIRONMENT
+#echo 'export CUDNN_LIBRARY_PATH="/usr/local/cuda-10.0/lib64/"' >>$SINGULARITY_ENVIRONMENT
+#echo 'export LIBRARY_PATH="/usr/local/cuda-10.0/lib64"' >>$SINGULARITY_ENVIRONMENT
+#echo 'export USE_CUDA=1 USE_CUDNN=1 USE_MKLDNN=1 USE_MPI=1 USE_CUDNN=ON' >>$SINGULARITY_ENVIRONMENT
 
 #echo 'export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}' >>$SINGULARITY_ENVIRONMENT
 #/anaconda3/bin/git clone --branch v1.5.0 https://github.com/pytorch/pytorch.git /pytorch-1.5.0

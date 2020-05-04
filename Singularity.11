@@ -1,0 +1,13 @@
+Bootstrap: docker
+From:nvcr.io/nvidia/tensorflow:20.03-tf2-py3
+
+%post
+apt-get -y update
+apt-get -y install gfortran file
+apt-get -y install libomp-dev
+%environment
+bash Start.sh
+#export PATH="/anaconda3/bin:$PATH"
+#CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
+XDG_RUNTIME_DIR=""
+PATH=${PATH}:${LSF_BINDIR}

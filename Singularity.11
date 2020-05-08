@@ -1,6 +1,10 @@
 Bootstrap: docker
 From:nvcr.io/nvidia/tensorflow:20.03-tf2-py3
 
+%post
+apt-get -y update
+apt-get -y install wget bash gcc gfortran g++ make file
+
 %environment
 echo "slurmadmin:x:300:300::/opt/slurm/slurm:/bin/false" >> /etc/passwd
 echo "slurmadmin:x:300:" >> /etc/group

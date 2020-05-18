@@ -1,5 +1,5 @@
 BootStrap: docker
-From: nvidia/cuda:10.1-cudnn7-runtime-ubuntu16.04
+From:nvcr.io/nvidia/tensorflow:20.03-tf2-py3
 %post
     . /.singularity.d/env/10-docker*.sh
 
